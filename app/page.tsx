@@ -1,5 +1,4 @@
-import FileButton from "@/Components/FileButton"
-import Navbar from "@/Components/Navbar";
+"use client"
 import { Camera, Clapperboard, Download } from "lucide-react";
 import { CldUploadButton } from "next-cloudinary";
 import Image from "next/image";

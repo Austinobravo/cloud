@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={poppins.className}> <Navbar/><main className="py-20 bg-slate-200">{children}</main></body>
+      <body className={poppins.className}> <main className=" bg-slate-200">{children}</main></body>
     </html>
   );
 }
