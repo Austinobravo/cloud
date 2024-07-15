@@ -18,7 +18,6 @@ const FileButton = () => {
         if (result.event === "success") { 
             setFiles(prevFiles => {
                 const newFiles = [...prevFiles, result.info.secure_url];
-                // console.log("Updated files array:", newFiles);
                 return newFiles;
             });
         }
@@ -31,9 +30,6 @@ const FileButton = () => {
 
     React.useEffect(() => {
         const submitToBackend = async () => {
-            console.log("Before backend submission, files:", files);
-            console.log("Before backend submission, title:", title);
-
             try {
                 const response = await fetch('/api/convert', {
                     method: 'POST',
@@ -64,12 +60,10 @@ const FileButton = () => {
             setTriggerSubmit(false);
         }
     }, [files,fileUrl, title, triggerSubmit, widget]);
-    // submitToBackend(3,3)
-
 
   return (
       <>
-      <section id='file' className='shadow-md md:w-[350px] rounded-md mx-auto px-4 pt-12 pb-24 my-4 bg-white'>
+      <section id='file' className='shadow-md md:w-[350px] rounded-md mx-auto px-4 pt-12 pb-24 my-4 !bg-white'>
         <h3 className='text-center text-violet-500 pb-4 text-lg font-bold'>Upload Your Files</h3>
         <div className='shadow flex justify-center items-center gap-1 py-3 text-center my-2 font-bold'>
             <Clapperboard/> 
@@ -107,6 +101,7 @@ const FileButton = () => {
         }
       </section>
       {/* <span onClick={()=>setFileUrl(prev => prev ? null : 'here')}>click</span> */}
+      {/* <span onClick={()=>handleQueuesEnd('_','_')}>click</span> */}
       <div className={`!duration-1000 !delay-1000 !transition-all !ease-linear ${fileUrl ? 'bottom-0': ''} `}>
         {fileUrl ? 
             <div className='fixed bg-white/70 w-full bottom-0 py-2'>
