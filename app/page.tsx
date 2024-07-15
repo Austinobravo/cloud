@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
     <Navbar/>
-    <section className="py-40 md:px-8 px-4 pt-5 bg-cover bg-center w-full h-96" style={{"backgroundImage":`url(https://cloudinary-marketing-res.cloudinary.com/image/upload/f_auto,q_auto,w_1800/v1706797510/Background_2toneBlue-home)`}}>
+    <section className="md:px-8 px-4 pt-5 bg-cover bg-center w-full h-96" style={{"backgroundImage":`url(https://cloudinary-marketing-res.cloudinary.com/image/upload/f_auto,q_auto,w_1800/v1706797510/Background_2toneBlue-home)`}}>
       <div className="text-white flex flex-col justify-center space-y-3 h-72 md:w-[500px]">
           <h3 className="text-5xl leading-snug">Your One time <span className="text-blue-500">Cloudinary</span> Uploader</h3>
           <p className="text-sm">Designed as a personal project to assist in cloud file uploads.</p>
