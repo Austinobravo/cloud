@@ -64,12 +64,12 @@ const FileButton = () => {
   return (
       <>
       <section>
-        <h3 className='text-center text-violet-500 pb-4 text-lg font-bold'>Upload Your Files</h3>
-        <div className='shadow flex justify-center items-center gap-1 py-3 text-center my-2 font-bold'>
+        <h3 className='!text-center !text-violet-500 pb-4 text-lg font-bold'>Upload Your Files</h3>
+        <div className='!shadow flex justify-center items-center gap-1 py-3 text-center my-2 font-bold'>
             <Clapperboard/> 
             <button type='button' onClick={()=> {setIsVideo(!isVideo), setIsImage(false)}}>Videos</button>    
         </div>
-        <div className='flex justify-center items-center gap-1 shadow py-3 text-center font-bold'>
+        <div className='flex justify-center items-center gap-1 !shadow py-3 text-center font-bold'>
             <Camera/>
             <button type='button' onClick={()=> {setIsImage(!isImage), setIsVideo(false)}}> Images</button>
         </div>
