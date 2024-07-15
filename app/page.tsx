@@ -11,7 +11,9 @@ const Home = () => {
           <Link href={`#file`} className="bg-gradient-to-l from-blue-500 to-slate-900 shadow-lg py-3 px-7 hover:animate-pulse outline-none text-wrap w-fit">Get Started</Link>
       </div>
     </section>
+    <section  id='file' className='shadow-md md:w-[350px] rounded-md mx-auto px-4 pt-12 pb-24 my-4 !bg-white'>
       <FileButton/>
+    </section>
     </>
   )
 }

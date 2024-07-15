@@ -63,7 +63,7 @@ const FileButton = () => {
 
   return (
       <>
-      <section id='file' className='shadow-md md:w-[350px] rounded-md mx-auto px-4 pt-12 pb-24 my-4 !bg-white'>
+      <section>
         <h3 className='text-center text-violet-500 pb-4 text-lg font-bold'>Upload Your Files</h3>
         <div className='shadow flex justify-center items-center gap-1 py-3 text-center my-2 font-bold'>
             <Clapperboard/> 
