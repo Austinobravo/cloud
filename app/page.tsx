@@ -1,6 +1,6 @@
 "use client"
 import { Camera, Clapperboard, Copy, Download, Eye, X } from "lucide-react";
-import { CldImage, CldUploadButton } from "next-cloudinary";
+import { CldImage, CldUploadButton, CldVideoPlayer } from "next-cloudinary";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -136,7 +136,7 @@ const Home = () => {
         <div className='fixed flex items-center bg-white/70 w-full bottom-0 py-2'>
           {files.length > 0 && 
             <span onClick={()=>setIsModalOpen(!isModalOpen)} className='mr-auto cursor-pointer border  bg-blue-500 flex items-center space-x-2 w-fit text-white py-2 px-4 rounded-md'>
-                <span>View images</span>
+                <span>View files</span>
                 <Eye size={20}/>
             </span>
           }
@@ -166,8 +166,16 @@ const Home = () => {
           </div>
           {/* <div className="static bg-black/50 w-full h-screen" onClick={()=>setIsModalOpen(!isModalOpen)}></div> */}
         <div className="animate grid gap-5 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 w-full">
-          {files.map((fileImage, index) => (
-            <CldImage key={index} width={300} height={100} src={fileImage} alt="images"/>
+          {files.map((file, index) => (
+            <div key={index}>
+              {isVideo ? 
+                <CldVideoPlayer width={300} height={100} src={file}/>
+                :
+                <CldImage width={300} height={100} src={file} alt="files"/>
+  
+              }
+
+            </div>
           ))}
           {/* <Image src={`/hensard.png`} width={300} height={100} alt=""/>
           <Image src={`/hensard.png`} width={300} height={100} alt=""/>
