@@ -44,7 +44,7 @@ const Home = () => {
                 }
 
                 const data = await response.json();
-                // console.log("data", data);
+                console.log("data", data);
                 setFileUrl(data.url)
 
                 if (widget) {
@@ -114,12 +114,13 @@ const Home = () => {
         : 
         null
         }
+    </section>
       {/* <span onClick={()=>setFileUrl(prev => prev ? null : 'here')}>click</span> */}
       {/* <span onClick={()=>handleQueuesEnd('_','_')}>click</span> */}
-      <div className={`!duration-1000 !delay-1000 !transition-all !ease-linear ${fileUrl ? 'bottom-0': ''} `}>
+      <div className={`!duration-1000 !delay-1000 border border-green-700 z-30 w-full !transition-all !ease-linear ${fileUrl ? 'bottom-0': ''} `}>
         {fileUrl ? 
-            <div className='fixed bg-white/70 w-full bottom-0 py-2'>
-                <Link href={fileUrl} target='_blank' download={true} className='ml-auto border bg-blue-500 flex items-center space-x-2 w-fit text-white py-2 px-4 rounded-md'>
+            <div className='fixed  bg-white/70 w-full bottom-0 py-2'>
+                <Link href={fileUrl} target='_blank' download={true} className='ml-auto border animate-pulse  bg-blue-500 flex items-center space-x-2 w-fit text-white py-2 px-4 rounded-md'>
                     <span>Download</span>
                     <Download size={20}/>
                 </Link>
@@ -129,7 +130,6 @@ const Home = () => {
         }
 
       </div>
-    </section>
     </>
   )
 }

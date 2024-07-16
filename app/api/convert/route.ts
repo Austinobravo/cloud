@@ -9,7 +9,7 @@ export async function POST(params:Request) {
         fs.appendFileSync(filePath, file+"\n")
     }
 
-    const fileUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/${fileName}`
+    const fileUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/files/${fileName}`
 
     return  NextResponse.json( {message:'Gotten', url: fileUrl})
     
