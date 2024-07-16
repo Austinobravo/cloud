@@ -1,6 +1,6 @@
 "use client"
-import { Camera, Clapperboard, Download } from "lucide-react";
-import { CldUploadButton } from "next-cloudinary";
+import { Camera, Clapperboard, Copy, Download, Eye, X } from "lucide-react";
+import { CldImage, CldUploadButton } from "next-cloudinary";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -13,6 +13,7 @@ const Home = () => {
     const [triggerSubmit, setTriggerSubmit] = React.useState<boolean>(false);
     const [widget, setWidget] = React.useState<any>(null);
     const [fileUrl, setFileUrl] = React.useState<string | null>(null)
+    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false)
 
     const submitFile = (result: any) => {
         if (result.event === "success") { 
@@ -60,6 +61,17 @@ const Home = () => {
             setTriggerSubmit(false);
         }
     }, [files,fileUrl, title, triggerSubmit, widget]);
+
+    const copyToClipboard = () => {
+      const tempInput = document.createElement('input')
+      const imageUrls = files.map((file) => {return file})
+      tempInput.value = imageUrls as unknown as string
+      document.body.appendChild(tempInput)
+      tempInput.select()
+      document.execCommand('copy')
+      document.body.removeChild(tempInput)
+      alert("Copied to clipboard")
+    }
 
   return (
     <>
@@ -115,21 +127,60 @@ const Home = () => {
         null
         }
     </section>
+    <section>
+     
+    </section>
       {/* <span onClick={()=>setFileUrl(prev => prev ? null : 'here')}>click</span> */}
       {/* <span onClick={()=>handleQueuesEnd('_','_')}>click</span> */}
-      <div className={`!duration-1000 !delay-1000 border border-green-700 z-30 w-full !transition-all !ease-linear ${fileUrl ? 'bottom-0': ''} `}>
-        {fileUrl ? 
-            <div className='fixed  bg-white/70 w-full bottom-0 py-2'>
-                <Link href={fileUrl} target='_blank' download={true} className='ml-auto border animate-pulse  bg-blue-500 flex items-center space-x-2 w-fit text-white py-2 px-4 rounded-md'>
-                    <span>Download</span>
-                    <Download size={20}/>
-                </Link>
-            </div>
-        :
-        null
-        }
+      <div className={`!duration-1000 !delay-1000 border border-green-700 z-30 w-full !transition-all !ease-linear bottom-0 `}>
+        <div className='fixed flex items-center bg-white/70 w-full bottom-0 py-2'>
+          {files.length > 0 && 
+            <span onClick={()=>setIsModalOpen(!isModalOpen)} className='mr-auto cursor-pointer border  bg-blue-500 flex items-center space-x-2 w-fit text-white py-2 px-4 rounded-md'>
+                <span>View images</span>
+                <Eye size={20}/>
+            </span>
+          }
+          {fileUrl ? 
+              <Link href={fileUrl} target='_blank' download={true} className='ml-auto border  bg-blue-500 flex items-center space-x-2 w-fit text-white py-2 px-4 rounded-md'>
+                  <span>Download</span>
+                  <Download size={20}/>
+              </Link>
+          :
+          null
+          }
+        </div>
 
       </div>
+
+      {isModalOpen &&
+        <div className="fixed bg-black/50 w-full h-full top-0 left-0  p-5">
+          <div className="flex items-center ">
+            <span className="bg-white rounded-full p-1 cursor-pointer" onClick={()=>setIsModalOpen(!isModalOpen)}>
+              <X color="red"/>
+            </span>
+            <span onClick={copyToClipboard} className='ml-auto cursor-pointer text-xs border my-2  bg-blue-500 flex items-center space-x-2 w-fit text-white py-2 px-4 rounded-md'>
+                <span>Copy to clipboard</span>
+                <Copy size={20}/>
+            </span>
+
+          </div>
+          {/* <div className="static bg-black/50 w-full h-screen" onClick={()=>setIsModalOpen(!isModalOpen)}></div> */}
+        <div className="animate grid gap-5 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 w-full">
+          {files.map((fileImage, index) => (
+            <CldImage key={index} width={300} height={100} src={fileImage} alt="images"/>
+          ))}
+          {/* <Image src={`/hensard.png`} width={300} height={100} alt=""/>
+          <Image src={`/hensard.png`} width={300} height={100} alt=""/>
+          <Image src={`/hensard.png`} width={300} height={100} alt=""/>
+          <Image src={`/hensard.png`} width={300} height={100} alt=""/>
+          <Image src={`/hensard.png`} width={300} height={100} alt=""/>
+          <Image src={`/hensard.png`} width={300} height={100} alt=""/> */}
+        </div>
+
+          {/* <p className=" animate text-white ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur mollitia beatae sunt magnam adipisci numquam maxime quo, corporis, placeat dolorem doloribus consequatur aut, praesentium nisi molestias error modi incidunt. Dolorem.</p> */}
+
+        </div>
+      }
     </>
   )
 }
